@@ -30,31 +30,6 @@ namespace CreateUserTestAPI.Controllers
                 return BadRequest(user);
             } 
 
-        // checks each of the fields in user and returns BadRequest with error message if one of them is null
-            // UPDATE: could be updated to check all fields and return appropriate error messages if multiple fields are missing
-            if (string.IsNullOrEmpty(user.FirstName))
-            {
-                return BadRequest("FirstName cannot be null");
-            }
-            if (string.IsNullOrEmpty(user.LastName)) 
-            {
-                return BadRequest("LastName cannot be null");
-            }
-
-            // UPDATE: is expecting a DateTime object in the request - could be updated to expect a string in a DTO but store a DateTime object in the User/DB
-            try
-            {
-                DateTime dateOfBirth = Convert.ToDateTime(user.DateOfBirth); 
-            } catch 
-            {
-                return BadRequest("Date of birth must be in the format dd/mm/yyyy");
-            }
-
-            if (string.IsNullOrEmpty(user.Address))
-            {
-                return BadRequest("Address cannot be null");
-            }
-
             // UPDATE: add further validation 
 
         // returns OK and the user if passess validation
