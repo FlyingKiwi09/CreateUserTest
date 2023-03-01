@@ -9,18 +9,18 @@ namespace CreateUserTestAPI.Model
         public int Id { get; set; }
 
         //attributes work with '[ApiController]' attribute in the controller class to validate user data in requests
-        [Required]
+        [Required(ErrorMessage = "First name is requred")]
         [MaxLength(30)]
         public String FirstName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Last name is requred")]
         [MaxLength(30)]
         public String LastName { get; set; }
 
         [Required]
         public DateTime DateOfBirth { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Address is requred")]
         [MaxLength(100)]
         public String Address { get; set; }
     }
