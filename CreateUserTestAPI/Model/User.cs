@@ -4,6 +4,10 @@ namespace CreateUserTestAPI.Model
 {
     public class User
     {
+
+        [Key]
+        public int Id { get; set; }
+
         //attributes work with '[ApiController]' attribute in the controller class to validate user data in requests
         [Required]
         [MaxLength(30)]

@@ -1,6 +1,20 @@
+using CreateUserTestAPI.Data;
+using Serilog;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+// configures the api to use Serilog instead of default logging
+Log.Logger = new LoggerConfiguration().MinimumLevel.Debug().WriteTo.File("log/CreateUserAPILogs.txt", rollingInterval: RollingInterval.Day).CreateLogger();
+builder.Host.UseSerilog();
+
+// configures the api connection to the database
+builder.Services.AddDbContext<ApplicationDBContext>(option =>
+{
+    option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultSQLConnection"));
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
